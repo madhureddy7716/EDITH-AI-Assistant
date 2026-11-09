@@ -1,22 +1,23 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
 
-# Virtual environment
+# Virtual environments
 venv/
 .venv/
 
-# API credentials
+# Secrets
 .env
 .env.*
-
-# Allow example configuration
 !.env.example
 
-# Database
+# Databases
 *.sqlite3
 *.db
+
+# PyInstaller
+build/
+dist/
 
 # IDE
 .vscode/

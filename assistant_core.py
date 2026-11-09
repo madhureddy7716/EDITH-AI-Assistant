@@ -12,7 +12,7 @@ import threading
 import time
 import wave
 import webbrowser
-
+import sys
 from array import array
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -21,12 +21,18 @@ from urllib.parse import quote_plus
 import requests
 from dotenv import load_dotenv
 
+# Application base directory
+if getattr(sys, "frozen", False):
+    BASE_DIR = Path(sys.executable).resolve().parent
+else:
+    BASE_DIR = Path(__file__).resolve().parent
+
 
 # =====================================================
 # CONFIGURATION
 # =====================================================
 
-load_dotenv(Path(__file__).with_name(".env"))
+load_dotenv(BASE_DIR / ".env")
 
 def env(name, default=""):
     return (os.getenv(name) or default).strip()
@@ -63,7 +69,7 @@ SILENCE_CHUNKS = int(0.9 * RATE / CHUNK)
 MAX_CHUNKS = int(25 * RATE / CHUNK)
 MIN_CHUNKS = int(0.5 * RATE / CHUNK)
 
-MEMORY_DB = Path(__file__).with_name("edith_memory.sqlite3")
+MEMORY_DB = BASE_DIR / "edith_memory.sqlite3"
 
 
 # =====================================================
